@@ -61,7 +61,7 @@ const Changestate = async () =>{
             .catch((error: Error) => {
                 console.error("Error:", error);
             });
-    }, []);
+    } );
 
     return (
         <>
