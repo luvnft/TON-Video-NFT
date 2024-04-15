@@ -5,6 +5,7 @@ import Info from './NFTinfo';
 
 interface Item {
     ipfs_pin_hash: string;
+    size : number;
 }
 
 interface dataItem {
@@ -69,10 +70,13 @@ const header: HeadersInit = {
         <>
             {toggle ? <Info  Changestate={Changestate} nftitem={nftitem}/> :
        <div className='flex flex-wrap gradient-bg-welcome min-h-screen  gap-10 justify-center pt-24 pb-5 px-16'>
-        {items.map((item: any)=>(
+        {/* {items.map((item: any)=>(
           <Cards item={item} openNFT={openNFT}/>
           
-        ))}
+        ))} */}
+        {items.filter(item => item.size != 83).map((item: any) => (
+    <Cards item={item} openNFT={openNFT} />
+))}
         </div>
   }
 
