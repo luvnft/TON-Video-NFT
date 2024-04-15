@@ -38,8 +38,8 @@ const uri: string = "https://api.pinata.cloud/data/pinList";
 // Define headers
 const header: HeadersInit = {
     "Content-Type": "application/json",
-    pinata_api_key: `4bb418d078855b571fa1`,
-    pinata_secret_api_key: `5cfc5aad08d32cda79fd403f9d3200966a9202906b86b7d437a27eeb9bde7f0d`,
+    pinata_api_key: `3c9178adcafab5175e0b`,
+    pinata_secret_api_key: `a397780d762da7fea9676dc2d1ebb6e3e7922788c00bf7f6773baa85717e98ad`,
 };
 
     useEffect(() => {
