@@ -33,15 +33,17 @@ const Changestate = async () =>{
     setToggle(!toggle);
 }
 
-    useEffect(() => {
-        const uri: string = "https://api.pinata.cloud/data/pinList";
+const uri: string = "https://api.pinata.cloud/data/pinList";
 
-        // Define headers
-        const header: HeadersInit = {
-            "Content-Type": "application/json",
-            pinata_api_key: `dedc16b75664bc108136`,
-            pinata_secret_api_key: `2b8fc356900683c32c2c59356ce60d2a97d2561b2d89d95efda9d02b399e44c8`,
-        };
+// Define headers
+const header: HeadersInit = {
+    "Content-Type": "application/json",
+    pinata_api_key: `4bb418d078855b571fa1`,
+    pinata_secret_api_key: `5cfc5aad08d32cda79fd403f9d3200966a9202906b86b7d437a27eeb9bde7f0d`,
+};
+
+    useEffect(() => {
+       
 
         fetch(uri, {
             method: "GET",
@@ -49,7 +51,7 @@ const Changestate = async () =>{
         })
             .then((response: Response) => {
                 if (response.ok) {
-                    // Parse the JSON response
+                  console.log(response)
                     return response.json();
                 }
                 throw new Error("Network response was not ok.");
@@ -61,7 +63,7 @@ const Changestate = async () =>{
             .catch((error: Error) => {
                 console.error("Error:", error);
             });
-    }, [] );
+    }, []);
 
     return (
         <>

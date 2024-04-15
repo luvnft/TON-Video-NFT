@@ -43,12 +43,11 @@ function Cards({ item, openNFT }: Props) {
       <div className='card-inner p-2'>
         {data ? (
           <>
-            <img src={data.image} className='object-cover w-[230px] h-[230px] rounded overflow-hidden' alt='NFT Image' />
+            <video src={data.image} className='object-cover w-[230px] h-[230px] rounded overflow-hidden'  />
             <div className='flex flex-col justify-center items-center'>
               <h3 className='text-white text-2xl font-thin mt-3'>{data.name}</h3>
               <div className='flex text-white justify-between items-center mb-3 gap-4 mt-3'>
-                <div className='gap-2 flex'>
-                  <img  alt="" className='h-[25px]' /> 
+                <div className='gap-2 flex'> 
                   <p>{data.price}</p>
                 </div>
                 <button onClick={()=>{openNFT(data)}} id='ton-connect-btn'  type="button" className="text-white bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded text-sm px-5 py-1.5 text-center me-2 ">Open</button>

@@ -17,7 +17,7 @@ function Info({ Changestate, nftitem}: Props) {
   return (
     <div className='flex max-sm:flex-col items-center justify-center max-sm:p-7 px-48 gap-4  pt-32'>
         <div className='h-full items-center pointer-events-none'>
-            <img src={nftitem.image}  className='h-[450px] max-sm:h-auto rounded ' />
+            <video src={nftitem.image}  className='h-[450px] max-sm:pt-10 max-sm:h-auto rounded ' autoPlay />
         </div>
         <div className='card-inner max-sm:w-full max-sm:h-[350px] card-info p-5'>
            <h1 className='text-white font-semibold text-3xl'>{nftitem.name}</h1>
