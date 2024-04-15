@@ -4,7 +4,7 @@ import {Express} from "express" // You may need to install the types for Express
 
 export default function setupProxy(app: Express) {
   app.use(
-    '/api',
+    '/all-nft',
     createProxyMiddleware({
       target: 'https://api.pinata.cloud',
       changeOrigin: true,
