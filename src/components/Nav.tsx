@@ -21,8 +21,8 @@ function Nav() {
           <Link className='no-underline text-gray-200' to="/all-nft">
           <li>All NFT</li>   </Link>
         
-          {/* <Link className='no-underline text-gray-200' to="/create">
-          <li>Mint NFT</li>   </Link>  */}
+          <Link className='no-underline text-gray-200' to="/create"> 
+          <li>Mint NFT</li>   </Link>  
         </ul>
        
         {/* <div className=" hidden xl:flex items-center space-x-5">
@@ -43,4 +43,4 @@ function Nav() {
   )
 }
 
-export default Nav
+export default Nav  

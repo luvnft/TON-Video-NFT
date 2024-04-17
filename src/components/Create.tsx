@@ -73,10 +73,8 @@ function Create() {
             }
         };
 
-        sendIncrement(0.05).then(async ()=>{
-                alert("transaction done");
 
-                try {
+                  try {
                     const resFile = await axios({
                         method: "post",
                         url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
@@ -97,14 +95,51 @@ function Create() {
                         price: forminfo.price,
                         owner: forminfo.owner,
                     };
-                    await pinJSONToPinata(info);
+                    sendIncrement(0.05).then(async () =>{
+                        await pinJSONToPinata(info);
+                        alert("NFT added successfully");
+                    }).catch((err) =>{
+                        alert(err);
+                    })
+                    
                 } catch (error) {
                     console.error(error);
                 }
-        }).catch((err) =>{
-            alert(err);
-        });
-        // console.log(suss);
+
+
+
+        // sendIncrement(0.05).then(async ()=>{
+        //         alert("transaction done");
+
+        //         try {
+        //             const resFile = await axios({
+        //                 method: "post",
+        //                 url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
+        //                 data: formData,
+        //                 headers: {
+        //                     pinata_api_key: `01fde9c5bfe02c0ae7f3`,
+        //                     pinata_secret_api_key: `1ad2cf854fd951a91a9dd8d1e26404bc4cb107bf46bd2d5d9b60a1185f36b98f`,
+        //                     "Content-Type": "multipart/form-data",
+        //                 },
+        //             });
+        
+        //             const ImgHash = `https://gateway.pinata.cloud/ipfs/${resFile.data.IpfsHash}`;
+        
+        //             const info: DataInfo = {
+        //                 name: forminfo.title,
+        //                 description: forminfo.description,
+        //                 image: ImgHash,
+        //                 price: forminfo.price,
+        //                 owner: forminfo.owner,
+        //             };
+        //             await pinJSONToPinata(info);
+        //         } catch (error) {
+        //             console.error(error);
+        //         }
+        // }).catch((err) =>{
+        //     alert(err);
+        // });
+        
 
        
 
