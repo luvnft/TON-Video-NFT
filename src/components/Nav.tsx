@@ -10,7 +10,7 @@ function Nav() {
     <nav className="flex justify-between text-white w-screen max-sm:px-0 px-24">
       <div className="px-5 xl:px-12 py-6 flex max-sm:gap-10 w-full items-center">
         <a className="text-3xl max-sm:text-base font-bold font-heading">
-          Ignitus Networks
+         📺 TON TV
         </a>
        
         <ul className="md:flex max-sm:flex max-sm:px-0 px-4 mx-auto max-sm:text-sm font-semibold font-heading max-sm:space-x-6 space-x-12">
