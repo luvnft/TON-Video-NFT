@@ -19,10 +19,10 @@ function Nav() {
           <li>Home</li>   </Link>  
           
           <Link className='no-underline text-gray-200' to="/all-nft">
-          <li>All NFT</li>   </Link>
+          <li>All NFTVs</li>   </Link>
         
           <Link className='no-underline text-gray-200' to="/create"> 
-          <li>Mint NFT</li>   </Link>  
+          <li>Mint NFTV</li>   </Link>  
         </ul>
        
         {/* <div className=" hidden xl:flex items-center space-x-5">
