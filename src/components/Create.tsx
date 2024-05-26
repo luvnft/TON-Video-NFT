@@ -58,8 +58,8 @@ function Create() {
             const url = "https://api.pinata.cloud/pinning/pinJSONToIPFS";
             const headers = {
                 "Content-Type": "application/json",
-                pinata_api_key: `3c9178adcafab5175e0b`,
-                pinata_secret_api_key: `a397780d762da7fea9676dc2d1ebb6e3e7922788c00bf7f6773baa85717e98ad`,
+                pinata_api_key: `b51002fa56e1aff2c77f`,
+                pinata_secret_api_key: `31e75aa5d61f203004aa27b2ec089a19109d8682a9627032809c6698799d6e7f`,
             };
     
             try {
@@ -80,8 +80,8 @@ function Create() {
                         url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
                         data: formData,
                         headers: {
-                            pinata_api_key: `01fde9c5bfe02c0ae7f3`,
-                            pinata_secret_api_key: `1ad2cf854fd951a91a9dd8d1e26404bc4cb107bf46bd2d5d9b60a1185f36b98f`,
+                            pinata_api_key: `b51002fa56e1aff2c77f`,
+                            pinata_secret_api_key: `31e75aa5d61f203004aa27b2ec089a19109d8682a9627032809c6698799d6e7f`,
                             "Content-Type": "multipart/form-data",
                         },
                     });
@@ -117,8 +117,8 @@ function Create() {
         //                 url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
         //                 data: formData,
         //                 headers: {
-        //                     pinata_api_key: `01fde9c5bfe02c0ae7f3`,
-        //                     pinata_secret_api_key: `1ad2cf854fd951a91a9dd8d1e26404bc4cb107bf46bd2d5d9b60a1185f36b98f`,
+        //                     pinata_api_key: `b51002fa56e1aff2c77f`,
+        //                     pinata_secret_api_key: `31e75aa5d61f203004aa27b2ec089a19109d8682a9627032809c6698799d6e7f`,
         //                     "Content-Type": "multipart/form-data",
         //                 },
         //             });
