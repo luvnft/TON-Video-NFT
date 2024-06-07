@@ -26,9 +26,9 @@ export function useMainContract() {
         const contract = new MainContract(
             Address.parse("EQDtf9azDAQlBovLasimQb0AyG4KGGlYyj9-8T4b9vpOwopc")
         );
-        // Assuming there's a proper way to open a contract
         // Replace this with the correct way to interact with the contract using the client
-        const openedContract = await client.someMethodToOpenContract(contract) as OpenedContract<MainContract>;
+        // For example, initializing the contract directly
+        const openedContract = contract.initialize(client) as OpenedContract<MainContract>;
         return openedContract;
     }, [client]);
 
