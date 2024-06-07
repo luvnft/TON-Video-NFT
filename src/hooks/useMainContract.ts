@@ -22,14 +22,16 @@ export function useMainContract() {
     const [contractBalance, setContractBalance] = useState<number | null>(0);
 
     const mainContract = useAsyncInitialize<OpenedContract<MainContract>>(async () => {
-        if (!client) throw new Error('Client not initialized');
+        if (!client) {
+            throw new Error('Client not initialized');
+        }
         const contract = new MainContract(
             Address.parse("EQDtf9azDAQlBovLasimQb0AyG4KGGlYyj9-8T4b9vpOwopc")
         );
-        // Replace this with the correct way to interact with the contract using the client
-        // For example, initializing the contract directly
-        const openedContract = contract.initialize(client) as OpenedContract<MainContract>;
-        return openedContract;
+        if (!('open' in client)) {
+            throw new Error('Method open not found on client');
+        }
+        return (client as any).open(contract) as OpenedContract<MainContract>;
     }, [client]);
 
     useEffect(() => {
