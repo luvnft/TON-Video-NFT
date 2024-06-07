@@ -10,8 +10,8 @@ export function useMainContract() {
     const client = useTonClient();
     const { sender } = useTonConnect();
 
-    const sleep = (time: number) => new Promise((resolve) =>
-        setTimeout(resolve, time));
+    const sleep = (time: number) =>
+        new Promise((resolve) => setTimeout(resolve, time));
 
     const [contractData, setContractData] = useState<{
         counter_value: number;
@@ -63,3 +63,4 @@ export function useMainContract() {
         },
     };
 }
+
