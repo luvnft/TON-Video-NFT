@@ -150,8 +150,8 @@ function Create() {
 
     return (
         <div className="h-screen pt-24">
-            <div className="container-fluid mt-5 text-left">
-                <div className="content mx-auto">
+            <div className="mt-5 text-left container-fluid">
+                <div className="mx-auto content">
                     <form className="max-w-sm mx-auto">
                         <div className="max-w-lg mx-auto">
                             <label
@@ -163,7 +163,7 @@ function Create() {
                             <input
                                 onChange={changeHandler}
                                 name="file"
-                                className="block w-full mb-4 h-8 text-m  text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                className="block w-full h-8 mb-4 text-gray-900 border border-gray-300 rounded-lg cursor-pointer text-m bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                 type="file"
                             />
                         </div>
@@ -172,7 +172,7 @@ function Create() {
                                 htmlFor="title"
                                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                             >
-                                NFT Name
+                                PPV Name
                             </label>
                             <input
                                 onChange={handleChange}
@@ -180,7 +180,7 @@ function Create() {
                                 id="title"
                                 name="title"
                                 className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                                placeholder="Enter NFT name"
+                                placeholder="Enter PPV name"
                                 required
                             />
                         </div>
@@ -220,7 +220,7 @@ function Create() {
                                 onClick={handleEvent}
                                 className="text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                             >
-                                Mint NFT
+                                Mint PPV
                             </button>
                         </div>
                     </form>
