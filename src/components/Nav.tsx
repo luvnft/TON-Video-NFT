@@ -10,7 +10,7 @@ function Nav() {
     <nav className="flex justify-between w-screen px-24 text-white max-sm:px-0">
       <div className="flex items-center w-full px-5 py-6 xl:px-12 max-sm:gap-10">
         <a className="text-3xl font-bold max-sm:text-base font-heading">
-         📺 PPV
+         📺 PPV.CASH
         </a>
        
         <ul className="px-4 mx-auto space-x-12 font-semibold md:flex max-sm:flex max-sm:px-0 max-sm:text-sm font-heading max-sm:space-x-6">
@@ -19,10 +19,10 @@ function Nav() {
           <li>Home</li>   </Link>  
           
           <Link className='text-gray-200 no-underline' to="/all-nft">
-          <li>All PPVs</li>   </Link>
+          <li>PPVs</li>   </Link>
         
           <Link className='text-gray-200 no-underline' to="/create"> 
-          <li>Mint PPV</li>   </Link>  
+          <li>Create PPV</li>   </Link>  
         </ul>
        
         {/* <div className="items-center hidden space-x-5 xl:flex">
