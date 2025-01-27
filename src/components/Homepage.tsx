@@ -10,8 +10,8 @@ function Homepage() {
     <div className='flex items-center justify-around pt-32 text-center text-white'>
         
         <div className='mb-16 max-sm:text-center '>
-            <h1 className='text-6xl font-semibold'>Telegram PPV Network<br></br><span className='font-thin text-sky-400'>with no middleman. </span></h1>
-            <p className='pt-8 text-xl font-thin'> Earn 💯 in Telegram $TON currency 24/7/365 <br></br>by uploading short reels (less than 30 secs) as PPV. <br></br>Join <a href="https://t.me/ppvcash" target="_blank" style={{fontWeight: "bold", textDecoration: "underline"}}>@ppvcash</a> Telegram to promote your PPV.</p><br></br>PPV.CASH Link in bio <a href="https://ppv.arvrtise.link/" target="_blank" style={{fontWeight: "bold", textDecoration: "underline"}}>PPV.ARVRTISE.LIVE</a> for updates.
+            <h1 className='text-6xl font-semibold'>Telegram PPV Adult TV<br></br><span className='font-thin text-sky-400'>with no middleman. </span></h1>
+            <p className='pt-8 text-xl font-thin'>Pay less than a dollar in TON to watch a PPV. Performers earn 💯% in Telegram $TON currency 24/7/365 <br></br>by uploading short reels (less than 30 secs) as PPV. <br></br>Join <a href="https://t.me/ppvcash" target="_blank" style={{fontWeight: "bold", textDecoration: "underline"}}>@ppvcash</a> Telegram to promote your PPV.</p><br></br>PPV.CASH Link in bio <a href="https://ppv.arvrtise.link/" target="_blank" style={{fontWeight: "bold", textDecoration: "underline"}}>PPV.ARVRTISE.LIVE</a> for updates.
             <br></br>
             <h2>Connect your Telegram wallet</h2>
             <br></br>
