@@ -58,8 +58,8 @@ function Create() {
             const url = "https://api.pinata.cloud/pinning/pinJSONToIPFS";
             const headers = {
                 "Content-Type": "application/json",
-                pinata_api_key: `b51002fa56e1aff2c77f`,
-                pinata_secret_api_key: `31e75aa5d61f203004aa27b2ec089a19109d8682a9627032809c6698799d6e7f`,
+                pinata_api_key: process.env.PINATA_API_KEY!,
+                pinata_secret_api_key: process.env.PINATA_SECRET_API_KEY!,
             };
     
             try {
@@ -80,8 +80,8 @@ function Create() {
                         url: "https://api.pinata.cloud/pinning/pinFileToIPFS",
                         data: formData,
                         headers: {
-                            pinata_api_key: `b51002fa56e1aff2c77f`,
-                            pinata_secret_api_key: `31e75aa5d61f203004aa27b2ec089a19109d8682a9627032809c6698799d6e7f`,
+                            pinata_api_key:  process.env.PINATA_API_KEY!,
+                            pinata_secret_api_key: process.env.PINATA_SECRET_API_KEY!,
                             "Content-Type": "multipart/form-data",
                         },
                     });
