@@ -92,4 +92,3 @@ function Cards({ item, openNFT }: Props) {
 }
 
 export default Cards;
-```
