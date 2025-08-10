@@ -128,7 +128,7 @@ function Home() {
             )}
 
             {/* Conditionally render NFT info modal or the gallery */}
-            {toggle ? (
+            {toggle && nftitem ? (
                 <Info Changestate={Changestate} nftitem={nftitem} />
             ) : (
                 <div className='flex flex-wrap gradient-bg-welcome min-h-screen gap-10 justify-center pt-24 pb-5 px-16'>
