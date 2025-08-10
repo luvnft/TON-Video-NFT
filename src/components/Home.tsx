@@ -72,11 +72,9 @@ function Home() {
     // For this example, they are hardcoded as per the original code but this is a security risk.
     const header: HeadersInit = {
         "Content-Type": "application/json",
-        // Replace with environment variables in a real application (e.g., process.env.VITE_PINATA_API_KEY)
-        pinata_api_key: `b51002fa56f2c77f`,
-        pinata_secret_api_key: `31e75aa5d61f20a19109d8682a9627032809c6698799d6e7f`,
+        pinata_api_key: import.meta.env.PINATA_API_KEY,
+        pinata_secret_api_key: import.meta.env.PINATA_SECRET_API_KEY,
     };
-
     useEffect(() => {
         let isMounted = true; // Flag to prevent state updates on unmounted component
 
