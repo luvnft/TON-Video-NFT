@@ -3,92 +3,156 @@ import Cards from "./Cards";
 import { useMainContract } from "../hooks/useMainContract";
 import Info from './NFTinfo';
 
+// Define interface for individual NFT items from Pinata
 interface Item {
     ipfs_pin_hash: string;
-    size : number;
+    size: number;
+    // Add any other properties an item might have if they are consistently present
+    // For example, if Pinata returns 'name' or 'price' directly in the item:
+    // name?: string;
+    // price?: number;
 }
 
-interface dataItem {
+// Define interface for the overall data structure returned by Pinata
+interface PinataResponse {
     count: number;
-    rows: [];
+    rows: Item[]; // Ensure rows is an array of Item
+}
+
+// Interface for the data expected by the NFT info modal, likely from Cards component's Dataval
+interface NFTInfoData {
+    image: string;
+    price: number;
+    name: string;
+    // ... any other properties passed to openNFT and used by NFTinfo
 }
 
 function Home() {
     const { sendIncrement } = useMainContract();
     const [items, setItems] = useState<Item[]>([]);
-    const [toggle, setToggle] = useState<boolean>(false)
-    const [nftitem, setNftitem] = useState<any>(null)
+    const [toggle, setToggle] = useState<boolean>(false); // Controls visibility of NFT info modal
+    const [nftitem, setNftitem] = useState<NFTInfoData | null>(null); // Data for the selected NFT
+    const [isLoading, setIsLoading] = useState<boolean>(true); // Loading state for fetching NFTs
+    const [fetchError, setFetchError] = useState<string | null>(null); // Error state for fetching NFTs
+    const [transactionMessage, setTransactionMessage] = useState<string | null>(null); // Message for transactions
+    const [isMessageSuccess, setIsMessageSuccess] = useState<boolean>(false); // Type of transaction message
 
-    const openNFT = async (data: any) =>{
-        sendIncrement(data.price).then(()=>{
-            alert("transacton done");
+    // Function to handle opening an NFT, including transaction logic
+    const openNFT = async (data: NFTInfoData) => {
+        setTransactionMessage(null); // Clear previous message
+        try {
+            // Attempt to send the increment transaction
+            await sendIncrement(data.price);
+            // On success, set success message and update NFT info modal state
+            setTransactionMessage("Transaction successful!");
+            setIsMessageSuccess(true);
             setNftitem(data);
             setToggle(true);
+        } catch (err: any) {
+            // On failure, set error message
+            setTransactionMessage(`Transaction failed: ${err.message || 'Unknown error'}`);
+            setIsMessageSuccess(false);
+            console.error("Transaction error:", err);
+        } finally {
+            // Clear the transaction message after a few seconds
+            setTimeout(() => setTransactionMessage(null), 5000);
+        }
+    };
 
-        }).catch((err)=>{
-            alert("tranaction fail "+ err)
-        })
-    }
+    // Function to change the state of the NFT info modal (toggle open/close)
+    const Changestate = () => {
+        setToggle(prevToggle => !prevToggle);
+    };
 
-const Changestate = async () =>{
-    setToggle(!toggle);
-}
+    // Pinata API endpoint for fetching pinned files
+    const uri: string = "https://api.pinata.cloud/data/pinList";
 
-const uri: string = "https://api.pinata.cloud/data/pinList";
-
-// Define headers
-const header: HeadersInit = {
-    "Content-Type": "application/json",
-    pinata_api_key: `b51002fa56e1aff2c77f`,
-    pinata_secret_api_key: `31e75aa5d61f203004aa27b2ec089a19109d8682a9627032809c6698799d6e7f`,
-};
+    // IMPORTANT: API keys should NOT be hardcoded in client-side code for production.
+    // They should be loaded securely from environment variables or a backend server.
+    // For this example, they are hardcoded as per the original code but this is a security risk.
+    const header: HeadersInit = {
+        "Content-Type": "application/json",
+        // Replace with environment variables in a real application (e.g., process.env.VITE_PINATA_API_KEY)
+        pinata_api_key: `b51002fa56f2c77f`,
+        pinata_secret_api_key: `31e75aa5d61f20a19109d8682a9627032809c6698799d6e7f`,
+    };
 
     useEffect(() => {
-       
+        let isMounted = true; // Flag to prevent state updates on unmounted component
 
-        fetch(uri, {
-            method: "GET",
-            headers: header,
-        })
-            .then((response: Response) => {
-                if (response.ok) {
-                  console.log(response)
-                    return response.json();
+        const fetchNfts = async () => {
+            setIsLoading(true); // Set loading state
+            setFetchError(null); // Clear any previous errors
+
+            try {
+                const response: Response = await fetch(uri, {
+                    method: "GET",
+                    headers: header,
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch NFTs: ${response.statusText}`);
                 }
-                throw new Error("Network response was not ok.");
-            })
-            .then((files: dataItem) => {
-                setItems(files.rows);
-                console.log(files);
-            })
-            .catch((error: Error) => {
-                console.error("Error:", error);
-            });
-    }, []);
+
+                const files: PinataResponse = await response.json();
+                if (isMounted) {
+                    setItems(files.rows);
+                    console.log("Fetched NFT files:", files);
+                }
+            } catch (error: any) {
+                if (isMounted) {
+                    console.error("Error fetching NFTs:", error);
+                    setFetchError(`Failed to load NFTs: ${error.message || 'Unknown error'}`);
+                }
+            } finally {
+                if (isMounted) {
+                    setIsLoading(false); // Clear loading state
+                }
+            }
+        };
+
+        fetchNfts();
+
+        // Cleanup function to prevent memory leaks if component unmounts during fetch
+        return () => {
+            isMounted = false;
+        };
+    }, []); // Empty dependency array means this effect runs once on mount
 
     return (
         <>
-            {toggle ? <Info  Changestate={Changestate} nftitem={nftitem}/> :
-       <div className='flex flex-wrap gradient-bg-welcome min-h-screen  gap-10 justify-center pt-24 pb-5 px-16'>
-        {/* {items.map((item: any)=>(
-          <Cards item={item} openNFT={openNFT}/>
-          
-        ))} */}
-        {items.filter(item => item.size != 83).map((item: any) => (
-    <Cards item={item} openNFT={openNFT} />
-))}
-        </div>
-  }
+            {/* Custom message display for transactions */}
+            {transactionMessage && (
+                <div className={`fixed top-4 left-1/2 -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg text-white z-50
+                    ${isMessageSuccess ? 'bg-green-500' : 'bg-red-500'}`}>
+                    {transactionMessage}
+                </div>
+            )}
 
-            {/* <div className="flex flex-wrap gradient-bg-welcome min-h-screen  gap-10 justify-center pt-24 pb-5 px-16">
-                {items.map((item: Item, index: number) => (
-                    <Cards key={index} item={item} />
-                ))}
-            </div> */}
+            {/* Conditionally render NFT info modal or the gallery */}
+            {toggle ? (
+                <Info Changestate={Changestate} nftitem={nftitem} />
+            ) : (
+                <div className='flex flex-wrap gradient-bg-welcome min-h-screen gap-10 justify-center pt-24 pb-5 px-16'>
+                    {isLoading && (
+                        <p className="text-white text-lg">Loading NFTs...</p>
+                    )}
+                    {fetchError && (
+                        <p className="text-red-500 text-lg">Error: {fetchError}</p>
+                    )}
+                    {!isLoading && !fetchError && items.length === 0 && (
+                        <p className="text-white text-lg">No NFTs found.</p>
+                    )}
+                    {!isLoading && !fetchError && items.length > 0 && (
+                        items.filter(item => item.size !== 83).map((item: Item) => (
+                            // Use ipfs_pin_hash as a unique key for list rendering
+                            <Cards key={item.ipfs_pin_hash} item={item} openNFT={openNFT} />
+                        ))
+                    )}
+                </div>
+            )}
         </>
     );
 }
 
 export default Home;
-
-
